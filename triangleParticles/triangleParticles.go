@@ -2,7 +2,6 @@ package triangleParticles
 
 import (
 	"image/color"
-	"math/rand"
 
 	"gamedev.z46.dev/ebiten-particles/shared"
 	"github.com/hajimehoshi/ebiten/v2"
@@ -10,7 +9,7 @@ import (
 
 const (
 	maxParticles = 128 * 1024
-	batchSize    = 8192
+	batchSize    = 4096
 )
 
 var (
@@ -23,6 +22,8 @@ var (
 )
 
 func init() {
+	w, h := ebiten.Monitor().Size()
+	Particles.Init(float64(w), float64(h))
 	whiteImage = ebiten.NewImage(1, 1)
 	whiteImage.Fill(color.White)
 
@@ -58,16 +59,13 @@ func init() {
 }
 
 func UpdateFunc(sw, sh float64) {
-	screenWf = float32(sw)
-	screenHf = float32(sh)
-
-	Particles.Update()
-	for i := 0; i < 512; i++ {
-		Particles.Add(shared.NewParticle(
-			sw/2, sh/2, rand.Float64()*20-10, rand.Float64()*20-10,
-			8, 120,
-		))
-	}
+	Particles.Update(sw, sh)
+	// for i := 0; i < 1024; i++ {
+	// 	Particles.Add(shared.NewParticle(
+	// 		sw/2, sh/2, rand.Float64()*20-10, rand.Float64()*20-10,
+	// 		8, 120,
+	// 	))
+	// }
 }
 
 func DrawFunc(screen *ebiten.Image) {

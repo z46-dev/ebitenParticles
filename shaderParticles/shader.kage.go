@@ -4,7 +4,7 @@
 
 package main
 
-const MAX_PARTICLES = 8
+const MAX_PARTICLES = 64
 
 var ScreenSize vec2
 var NumParticles int

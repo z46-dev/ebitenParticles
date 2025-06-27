@@ -20,7 +20,7 @@ func init() {
 	}
 }
 
-const PARTICLE_BATCH_SIZE = 8
+const PARTICLE_BATCH_SIZE = 64
 const MAX_PARTICLES = 1024
 
 var NumParticles int = 0

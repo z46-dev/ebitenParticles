@@ -1,28 +1,23 @@
 package imageParticles
 
 import (
-	"math/rand/v2"
-
 	"gamedev.z46.dev/ebiten-particles/shared"
 	"github.com/hajimehoshi/ebiten/v2"
 	"golang.org/x/image/colornames"
 )
 
 var img *ebiten.Image
+var Particles *shared.Collection = shared.NewCollection(32768)
 
 func init() {
+	w, h := ebiten.Monitor().Size()
+	Particles.Init(float64(w), float64(h))
 	img = ebiten.NewImage(32, 32)
 	img.Fill(colornames.Red)
 }
 
-var Particles *shared.Collection = shared.NewCollection(16384)
-
 func UpdateFunc(width, height float64) {
-	Particles.Update()
-
-	for range 192 {
-		Particles.Add(shared.NewParticle(width/2, height/2, rand.Float64()*20-10, rand.Float64()*20-10, 8, 120))
-	}
+	Particles.Update(width, height)
 }
 
 func DrawFunc(screen *ebiten.Image) {
