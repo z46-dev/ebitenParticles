@@ -9,7 +9,7 @@ import (
 
 const (
 	maxParticles = 128 * 1024
-	batchSize    = 4096
+	batchSize    = 1024 * 8
 )
 
 var (
