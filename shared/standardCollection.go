@@ -17,7 +17,7 @@ func (c *Collection) Init(w, h float64) {
 	for i := range len(c.items) {
 		c.items[i] = NewParticle(rand.Float64()*w, rand.Float64()*h,
 			rand.Float64()*20-10, rand.Float64()*20-10,
-			8, 120,
+			2, 120,
 		)
 	}
 }
@@ -45,7 +45,7 @@ func (c *Collection) Reset(item *Particle, w, h float64) {
 	item.Y = h / 2
 	item.Vx = rand.Float64()*20 - 10
 	item.Vy = rand.Float64()*20 - 10
-	item.Size = 8
+	item.Size = 2
 	item.Lifetime = 60 + rand.Intn(120)
 }
 
